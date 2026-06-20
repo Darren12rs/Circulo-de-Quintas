@@ -1,0 +1,203 @@
+/* ================================================================= */
+
+/* 1. DISEÑO GENERAL Y RESPONSIVO */
+
+/* ================================================================= */
+
+/* Maquillaje de Fondo y Paneles */
+body {
+    background-color: #10141d; /* Color oscuro profundo de tu captura */
+}
+
+.pantalla-completa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+header h1 {
+    font-family: serif;
+    color: #d4af37;
+    letter-spacing: 3px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+header p {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+#contenedor {
+    position: relative;
+
+    width: 90vw;
+
+    max-width: 600px;
+
+    aspect-ratio: 1 / 1;
+}
+
+#circulo {
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+/* ================================================================= */
+
+/* 2. ESTRUCTURA DE LOS ABANICOS (EJES) */
+
+/* ================================================================= */
+
+#eje-mayor,
+#eje-menor {
+    position: absolute;
+
+    /* Mantenemos tus ajustes de centro exactos */
+
+    top: calc(50% - 0.5%);
+
+    left: calc(50% + 2.3%);
+
+    width: 170%;
+
+    height: 106%;
+
+    /* El transform inicial es aplicado por el JS, 
+
+       aquí definimos el pivote de giro sobre el centro del contenedor */
+
+    transform-origin: 50% 50%;
+
+    pointer-events: none;
+
+    z-index: 5;
+
+    transition: transform 0.4s ease-out;
+}
+
+/* Forzamos que las imágenes no tengan márgenes internos */
+
+#eje-mayor img,
+#eje-menor img {
+    position: absolute;
+
+    top: 50.3%;
+
+    left: 48.7%;
+
+    /* AJUSTA ESTO: Cambia el 100% a un tamaño menor, ej: 85% o 90% */
+
+    width: 90%;
+
+    height: 90%;
+
+    /* Esto es vital para que al reducir el tamaño, 
+
+       se mantenga centrada en su propio espacio */
+
+    transform: translate(-50%, -50%);
+
+    display: block;
+
+    object-fit: contain;
+}
+
+/* ================================================================= */
+
+/* 3. CONFIGURACIÓN DE LAS NOTAS */
+
+/* ================================================================= */
+
+.nota-mayor,
+.nota-menor {
+    position: absolute;
+
+    background-color: transparent;
+
+    border-radius: 50%;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 10;
+
+    pointer-events: auto !important;
+
+    --ajuste-x: 2.3%;
+
+    --ajuste-y: -0.5%;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.nota-mayor:hover,
+.nota-menor:hover {
+    opacity: 0.8;
+
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Medidas para Notas Mayores */
+
+.nota-mayor {
+    width: 8%;
+
+    height: 8%;
+
+    border: 2.5px solid #ffffff;
+
+    --radio-x: 34.2%;
+
+    --radio-y: 33.5%;
+}
+
+/* Medidas para Notas Menores */
+
+.nota-menor {
+    width: 5.5%;
+
+    height: 5.5%;
+
+    border: 2px solid #ffffff;
+
+    --radio-x: 19%;
+
+    --radio-y: 19.5%;
+}
+
+/* Posicionamiento matemático de las notas */
+
+.nota-mayor,
+.nota-menor {
+    --angulo: calc(var(--i) * 30deg - 90deg);
+
+    left: calc(50% + var(--ajuste-x) + var(--radio-x) * cos(var(--angulo)));
+
+    top: calc(50% + var(--ajuste-y) + var(--radio-y) * sin(var(--angulo)));
+}
