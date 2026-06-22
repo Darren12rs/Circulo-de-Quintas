@@ -1,22 +1,54 @@
 <!doctype html>
-
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <title>Círculo de Quintas Responsivo</title>
-
+        <!-- CSS de Bootstrap 5 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="estilos.css" />
     </head>
-
     <body>
         <div class="pantalla-completa">
             <header>
                 <h1>CÍRCULO DE QUINTAS</h1>
                 <p>Selecciona una nota mayor (exterior) o menor (interior)</p>
             </header>
+
+            <aside class="columna-lateral izquierda">
+                <h2>¿Qué quieres transmitir?</h2>
+                <div class="panel-emociones">
+                    <button class="btn-emocion" data-tipo="alegria">
+                        <span class="emoji">☀️</span>
+                        <span class="info-btn">
+                            <strong style="display: block">Alegría</strong>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Sonido brillante</span>
+                        </span>
+                    </button>
+                    <button class="btn-emocion" data-tipo="nostalgia">
+                        <span class="emoji">🍂</span>
+                        <span class="info-btn">
+                            <strong style="display: block">Nostalgia</strong>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Balada agridulce</span>
+                        </span>
+                    </button>
+                    <button class="btn-emocion" data-tipo="epica">
+                        <span class="emoji">🎬</span>
+                        <span class="info-btn">
+                            <strong style="display: block">Épica</strong>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Bandas sonoras</span>
+                        </span>
+                    </button>
+                    <button class="btn-emocion" data-tipo="misterio">
+                        <span class="emoji">🌌</span>
+                        <span class="info-btn">
+                            <strong style="display: block">Misterio</strong>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Tono oscuro</span>
+                        </span>
+                    </button>
+                </div>
+            </aside>
+
             <div id="contenedor">
                 <object id="circulo" data="circulo.svg" type="image/svg+xml"></object>
 
@@ -28,55 +60,54 @@
                     <img src="AbaMenor.svg" alt="Abanico Menor" id="AbaMenor" />
                 </div>
 
-                <div class="nota-mayor" style="--i: 0"></div>
+                <div class="nota-mayor" style="--i: 0" data-nota="DO"></div>
+                <div class="nota-mayor" style="--i: 1" data-nota="SOL"></div>
+                <div class="nota-mayor" style="--i: 2" data-nota="RE"></div>
+                <div class="nota-mayor" style="--i: 3" data-nota="LA"></div>
+                <div class="nota-mayor" style="--i: 4" data-nota="MI"></div>
+                <div class="nota-mayor" style="--i: 5" data-nota="SI"></div>
+                <div class="nota-mayor" style="--i: 6" data-nota="SOL♭/FA#"></div>
+                <div class="nota-mayor" style="--i: 7" data-nota="RE♭"></div>
+                <div class="nota-mayor" style="--i: 8" data-nota="LA♭"></div>
+                <div class="nota-mayor" style="--i: 9" data-nota="MI♭"></div>
+                <div class="nota-mayor" style="--i: 10" data-nota="SI♭"></div>
+                <div class="nota-mayor" style="--i: 11" data-nota="FA"></div>
 
-                <div class="nota-mayor" style="--i: 1"></div>
-
-                <div class="nota-mayor" style="--i: 2"></div>
-
-                <div class="nota-mayor" style="--i: 3"></div>
-
-                <div class="nota-mayor" style="--i: 4"></div>
-
-                <div class="nota-mayor" style="--i: 5"></div>
-
-                <div class="nota-mayor" style="--i: 6"></div>
-
-                <div class="nota-mayor" style="--i: 7"></div>
-
-                <div class="nota-mayor" style="--i: 8"></div>
-
-                <div class="nota-mayor" style="--i: 9"></div>
-
-                <div class="nota-mayor" style="--i: 10"></div>
-
-                <div class="nota-mayor" style="--i: 11"></div>
-
-                <div class="nota-menor" style="--i: 0"></div>
-
-                <div class="nota-menor" style="--i: 1"></div>
-
-                <div class="nota-menor" style="--i: 2"></div>
-
-                <div class="nota-menor" style="--i: 3"></div>
-
-                <div class="nota-menor" style="--i: 4"></div>
-
-                <div class="nota-menor" style="--i: 5"></div>
-
-                <div class="nota-menor" style="--i: 6"></div>
-
-                <div class="nota-menor" style="--i: 7"></div>
-
-                <div class="nota-menor" style="--i: 8"></div>
-
-                <div class="nota-menor" style="--i: 9"></div>
-
-                <div class="nota-menor" style="--i: 10"></div>
-
-                <div class="nota-menor" style="--i: 11"></div>
+                <div class="nota-menor" style="--i: 0" data-nota="lam"></div>
+                <div class="nota-menor" style="--i: 1" data-nota="mim"></div>
+                <div class="nota-menor" style="--i: 2" data-nota="sim"></div>
+                <div class="nota-menor" style="--i: 3" data-nota="fa#m"></div>
+                <div class="nota-menor" style="--i: 4" data-nota="do#m"></div>
+                <div class="nota-menor" style="--i: 5" data-nota="sol#m"></div>
+                <div class="nota-menor" style="--i: 6" data-nota="re#m/mibm"></div>
+                <div class="nota-menor" style="--i: 7" data-nota="sibm"></div>
+                <div class="nota-menor" style="--i: 8" data-nota="fam"></div>
+                <div class="nota-menor" style="--i: 9" data-nota="dom"></div>
+                <div class="nota-menor" style="--i: 10" data-nota="solm"></div>
+                <div class="nota-menor" style="--i: 11" data-nota="rem"></div>
             </div>
+
+            <aside class="columna-lateral derecha">
+                <h2>Estado de Armonía</h2>
+                <div class="displays-verticales">
+                    <div class="info-activa">
+                        <p>MAYOR ACTIVA</p>
+                        <div id="display-mayor">—</div>
+                    </div>
+                    <div class="info-activa">
+                        <p>MENOR ACTIVA</p>
+                        <div id="display-menor">—</div>
+                    </div>
+                </div>
+
+                <div class="recetario-acordes">
+                    <p>PROGRESIÓN RECOMENDADA</p>
+                    <div id="display-progresion">Selecciona una nota en el círculo y una emoción...</div>
+                </div>
+            </aside>
         </div>
         <script src="script.js?v=3"></script>
+        <!-- JS de Bootstrap 5 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
