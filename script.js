@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =================================================================
-    // SISTEMA DE ILUMINACIÓN Y ACORDES RECOMENDADOS (DINÁMICO AL CAMBIO DE NOTA)
+    // SISTEMA DE ILUMINACIÓN Y ACORDES RECOMENDADOS (7 EMOCIONES DEFINITIVAS)
     // =================================================================
     function actualizarIluminacion() {
         // 1. Apagar luces previas
@@ -129,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
             let idx_ii = (ultimoIndiceMayor - 1 + 12) % 12;
             let idx_iii = (ultimoIndiceMayor + 1) % 12;
 
-            // Forzamos la lectura fresca del HTML según la nueva nota pulsada
             let nota_I = buscarNota(notasMayores, idx_I);
             let nota_IV = buscarNota(notasMayores, idx_IV);
             let nota_V = buscarNota(notasMayores, idx_V);
@@ -138,32 +137,50 @@ document.addEventListener("DOMContentLoaded", () => {
             let nota_iii = buscarNota(notasMenores, idx_iii);
 
             if (emocionActiva) {
-                if (emocionActiva === "alegria") {
+                if (emocionActiva === "felicidad") {
                     iluminarNota(notasMayores, idx_I);
-                    iluminarNota(notasMayores, idx_IV);
                     iluminarNota(notasMayores, idx_V);
-                    if (displayProgresion)
-                        displayProgresion.innerHTML = `Vibras brillantes e intensas (I - IV - V - IV):<br><div class="prog-resaltada">${nota_I}  →  ${nota_IV}  →  ${nota_V}  →  ${nota_IV}</div>`;
-                } else if (emocionActiva === "nostalgia") {
-                    iluminarNota(notasMayores, idx_I);
                     iluminarNota(notasMenores, idx_vi);
                     iluminarNota(notasMayores, idx_IV);
-                    iluminarNota(notasMayores, idx_V);
                     if (displayProgresion)
-                        displayProgresion.innerHTML = `Sentimiento agridulce clásico (I - vi - IV - V):<br><div class="prog-resaltada">${nota_I}  →  ${nota_vi}  →  ${nota_IV}  →  ${nota_V}</div>`;
-                } else if (emocionActiva === "epica") {
+                        displayProgresion.innerHTML = `Optimismo puro y sonido pop/rock brillante (I - V - vi - IV):<br><div class="prog-resaltada">${nota_I}  →  ${nota_V}  →  ${nota_vi}  →  ${nota_IV}</div>`;
+                } else if (emocionActiva === "desamor") {
                     iluminarNota(notasMenores, idx_vi);
                     iluminarNota(notasMayores, idx_IV);
                     iluminarNota(notasMayores, idx_I);
                     iluminarNota(notasMayores, idx_V);
                     if (displayProgresion)
-                        displayProgresion.innerHTML = `Fuerza cinematográfica en aumento (vi - IV - I - V):<br><div class="prog-resaltada">${nota_vi}  →  ${nota_IV}  →  ${nota_I}  →  ${nota_V}</div>`;
-                } else if (emocionActiva === "misterio") {
+                        displayProgresion.innerHTML = `El vacío clásico de cuando extrañas a alguien (vi - IV - I - V):<br><div class="prog-resaltada">${nota_vi}  →  ${nota_IV}  →  ${nota_I}  →  ${nota_V}</div>`;
+                } else if (emocionActiva === "dolor") {
                     iluminarNota(notasMenores, idx_vi);
                     iluminarNota(notasMenores, idx_ii);
                     iluminarNota(notasMenores, idx_iii);
                     if (displayProgresion)
-                        displayProgresion.innerHTML = `Atmósfera oscura y suspendida (vi - ii - iii - vi):<br><div class="prog-resaltada">${nota_vi}  →  ${nota_ii}  →  ${nota_iii}  →  ${nota_vi}</div>`;
+                        displayProgresion.innerHTML = `Tristeza profunda en el abismo menor (vi - ii - iii - vi):<br><div class="prog-resaltada">${nota_vi}  →  ${nota_ii}  →  ${nota_iii}  →  ${nota_vi}</div>`;
+                } else if (emocionActiva === "paz") {
+                    iluminarNota(notasMayores, idx_IV);
+                    iluminarNota(notasMayores, idx_I);
+                    if (displayProgresion)
+                        displayProgresion.innerHTML = `Relajación total y sonido flotante (IV - I - IV - I):<br><div class="prog-resaltada">${nota_IV}  →  ${nota_I}  →  ${nota_IV}  →  ${nota_I}</div>`;
+                } else if (emocionActiva === "amor") {
+                    iluminarNota(notasMayores, idx_I);
+                    iluminarNota(notasMenores, idx_vi);
+                    iluminarNota(notasMayores, idx_IV);
+                    iluminarNota(notasMayores, idx_V);
+                    if (displayProgresion)
+                        displayProgresion.innerHTML = `Calidez íntima y balada romántica (I - vi - IV - V):<br><div class="prog-resaltada">${nota_I}  →  ${nota_vi}  →  ${nota_IV}  →  ${nota_V}</div>`;
+                } else if (emocionActiva === "poder") {
+                    iluminarNota(notasMenores, idx_vi);
+                    iluminarNota(notasMayores, idx_IV);
+                    iluminarNota(notasMayores, idx_V);
+                    if (displayProgresion)
+                        displayProgresion.innerHTML = `Marcha épica, heroica y motivacional (vi - IV - V - vi):<br><div class="prog-resaltada">${nota_vi}  →  ${nota_IV}  →  ${nota_V}  →  ${nota_vi}</div>`;
+                } else if (emocionActiva === "misterio") {
+                    iluminarNota(notasMenores, idx_vi);
+                    iluminarNota(notasMenores, idx_iii);
+                    iluminarNota(notasMenores, idx_ii);
+                    if (displayProgresion)
+                        displayProgresion.innerHTML = `Tensión, intriga y suspenso cinematográfico (vi - iii - ii - iii):<br><div class="prog-resaltada">${nota_vi}  →  ${nota_iii}  →  ${nota_ii}  →  ${nota_iii}</div>`;
                 }
             } else {
                 iluminarNota(notasMayores, idx_I);
@@ -190,33 +207,49 @@ document.addEventListener("DOMContentLoaded", () => {
             let nota_VII = buscarNota(notasMayores, idx_VII);
 
             if (emocionActiva) {
-                if (emocionActiva === "misterio") {
-                    iluminarNota(notasMenores, idx_i);
-                    iluminarNota(notasMenores, idx_iv);
-                    iluminarNota(notasMenores, idx_v);
-                    if (displayProgresion)
-                        displayProgresion.innerHTML = `Tensión y oscuridad pura menor (i - iv - v - i):<br><div class="prog-resaltada">${nota_i}  →  ${nota_iv}  →  ${nota_v}  →  ${nota_i}</div>`;
-                } else if (emocionActiva === "epica") {
-                    iluminarNota(notasMenores, idx_i);
+                if (emocionActiva === "felicidad") {
+                    iluminarNota(notasMayores, idx_III);
                     iluminarNota(notasMayores, idx_VI);
                     iluminarNota(notasMayores, idx_VII);
                     if (displayProgresion)
-                        displayProgresion.innerHTML = `Marcha heroica menor-mayor (i - VI - VII):<br><div class="prog-resaltada">${nota_i}  →  ${nota_VI}  →  ${nota_VII}</div>`;
-                } else if (emocionActiva === "nostalgia") {
-                    // Balada melancólica en modo menor (i - VI - III - VII) - ¡Ya no se come ninguna nota!
+                        displayProgresion.innerHTML = `Brillo desde el relativo Mayor (III - VI - VII):<br><div class="prog-resaltada">${nota_III}  →  ${nota_VI}  →  ${nota_VII}</div>`;
+                } else if (emocionActiva === "desamor") {
                     iluminarNota(notasMenores, idx_i);
                     iluminarNota(notasMayores, idx_VI);
                     iluminarNota(notasMayores, idx_III);
                     iluminarNota(notasMayores, idx_VII);
                     if (displayProgresion)
                         displayProgresion.innerHTML = `Sentimiento agridulce menor (i - VI - III - VII):<br><div class="prog-resaltada">${nota_i}  →  ${nota_VI}  →  ${nota_III}  →  ${nota_VII}</div>`;
-                } else if (emocionActiva === "alegria") {
-                    // Si pides alegría en menor, levanta el ánimo usando los grados mayores de la escala
+                } else if (emocionActiva === "dolor") {
+                    iluminarNota(notasMenores, idx_i);
+                    iluminarNota(notasMenores, idx_iv);
+                    iluminarNota(notasMenores, idx_v);
+                    if (displayProgresion)
+                        displayProgresion.innerHTML = `Tristeza profunda y nudo en el pecho (i - iv - v - i):<br><div class="prog-resaltada">${nota_i}  →  ${nota_iv}  →  ${nota_v}  →  ${nota_i}</div>`;
+                } else if (emocionActiva === "paz") {
+                    iluminarNota(notasMenores, idx_iv);
+                    iluminarNota(notasMenores, idx_i);
+                    if (displayProgresion)
+                        displayProgresion.innerHTML = `Calma y resolución cíclica flotante (iv - i - iv - i):<br><div class="prog-resaltada">${nota_iv}  →  ${nota_i}  →  ${nota_iv}  →  ${nota_i}</div>`;
+                } else if (emocionActiva === "amor") {
                     iluminarNota(notasMayores, idx_III);
+                    iluminarNota(notasMenores, idx_i);
+                    iluminarNota(notasMenores, idx_iv);
+                    iluminarNota(notasMayores, idx_VII);
+                    if (displayProgresion)
+                        displayProgresion.innerHTML = `Refugio cálido en acordes mixtos (III - i - iv - VII):<br><div class="prog-resaltada">${nota_III}  →  ${nota_i}  →  ${nota_iv}  →  ${nota_VII}</div>`;
+                } else if (emocionActiva === "poder") {
+                    iluminarNota(notasMenores, idx_i);
                     iluminarNota(notasMayores, idx_VI);
                     iluminarNota(notasMayores, idx_VII);
                     if (displayProgresion)
-                        displayProgresion.innerHTML = `Brillo desde el relativo Mayor (III - VI - VII):<br><div class="prog-resaltada">${nota_III}  →  ${nota_VI}  →  ${nota_VII}</div>`;
+                        displayProgresion.innerHTML = `Marcha heroica menor-mayor (i - VI - VII):<br><div class="prog-resaltada">${nota_i}  →  ${nota_VI}  →  ${nota_VII}</div>`;
+                } else if (emocionActiva === "misterio") {
+                    iluminarNota(notasMenores, idx_i);
+                    iluminarNota(notasMenores, idx_v);
+                    iluminarNota(notasMenores, idx_iv);
+                    if (displayProgresion)
+                        displayProgresion.innerHTML = `Atmósfera oscura y suspenso puro (i - v - iv - v):<br><div class="prog-resaltada">${nota_i}  →  ${nota_v}  →  ${nota_iv}  →  ${nota_v}</div>`;
                 }
             } else {
                 iluminarNota(notasMenores, idx_i);

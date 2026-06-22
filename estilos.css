@@ -53,7 +53,7 @@ header p {
 
 #contenedor {
     position: relative;
-    width: 500px;  /* Forzado a tamaño fijo idéntico a tu plano original */
+    width: 500px; /* Forzado a tamaño fijo idéntico a tu plano original */
     height: 500px; /* Así tus coordenadas matemáticas nunca se desplazan */
     margin: 0 auto;
     flex-shrink: 0;
@@ -133,7 +133,7 @@ header p {
 .panel-emociones {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px; /* Ajuste sutil para que las 7 emociones no se desborden */
 }
 .btn-emocion {
     display: flex;
@@ -142,7 +142,7 @@ header p {
     background: #161d2f;
     color: #cbd5e1;
     border: 1px solid #232d45;
-    padding: 10px;
+    padding: 6px 10px; /* Ajuste sutil de altura manteniendo tu estructura */
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
@@ -224,7 +224,6 @@ header p {
     margin-top: 4px;
     border-left: 3px solid #d4af37;
 }
-
 /* ================================================================= */
 /* 4. CONFIGURACIÓN DE LAS NOTAS */
 /* ================================================================= */
@@ -285,9 +284,23 @@ header p {
 /* 5. NUEVO: ANIMACIONES DE PARPADEO E ILUMINACIÓN */
 /* ================================================================= */
 @keyframes pulsoBrillo {
-    0% { box-shadow: 0 0 4px #d4af37; border-color: #d4af37; opacity: 0.3; }
-    50% { box-shadow: 0 0 15px #ffffff, 0 0 25px #d4af37; border-color: #ffffff; opacity: 0.9; }
-    100% { box-shadow: 0 0 4px #d4af37; border-color: #d4af37; opacity: 0.3; }
+    0% {
+        box-shadow: 0 0 4px #d4af37;
+        border-color: #d4af37;
+        opacity: 0.3;
+    }
+    50% {
+        box-shadow:
+            0 0 15px #ffffff,
+            0 0 25px #d4af37;
+        border-color: #ffffff;
+        opacity: 0.9;
+    }
+    100% {
+        box-shadow: 0 0 4px #d4af37;
+        border-color: #d4af37;
+        opacity: 0.3;
+    }
 }
 
 .nota-iluminada {
@@ -305,8 +318,18 @@ header p {
         overflow-y: auto;
         height: auto;
     }
-    header { position: relative; top: 0; transform: none; left: 0; margin-bottom: 20px; }
-    .columna-lateral { width: 100%; max-width: 500px; margin-bottom: 15px; }
+    header {
+        position: relative;
+        top: 0;
+        transform: none;
+        left: 0;
+        margin-bottom: 20px;
+    }
+    .columna-lateral {
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 15px;
+    }
     #contenedor {
         transform: scale(0.85);
         margin: 10px auto;

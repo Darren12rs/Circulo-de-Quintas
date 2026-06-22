@@ -4,7 +4,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Círculo de Quintas Responsivo</title>
-        <!-- CSS de Bootstrap 5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="estilos.css" />
     </head>
@@ -18,39 +17,60 @@
             <aside class="columna-lateral izquierda">
                 <h2>¿Qué quieres transmitir?</h2>
                 <div class="panel-emociones">
-                    <button class="btn-emocion" data-tipo="alegria">
-                        <span class="emoji">☀️</span>
+                    <button class="btn-emocion" data-tipo="felicidad">
+                        <span class="emoji">✨</span>
                         <span class="info-btn">
-                            <strong style="display: block">Alegría</strong>
+                            <strong style="display: block">Felicidad</strong>
                             <span style="display: block; font-size: 0.65rem; color: #64748b">Sonido brillante</span>
                         </span>
                     </button>
-                    <button class="btn-emocion" data-tipo="nostalgia">
-                        <span class="emoji">🍂</span>
+                    <button class="btn-emocion" data-tipo="desamor">
+                        <span class="emoji">💔</span>
                         <span class="info-btn">
-                            <strong style="display: block">Nostalgia</strong>
-                            <span style="display: block; font-size: 0.65rem; color: #64748b">Balada agridulce</span>
+                            <strong style="display: block">Desamor</strong>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Corta-venas clásico</span>
                         </span>
                     </button>
-                    <button class="btn-emocion" data-tipo="epica">
-                        <span class="emoji">🎬</span>
+                    <button class="btn-emocion" data-tipo="dolor">
+                        <span class="emoji">🖤</span>
                         <span class="info-btn">
-                            <strong style="display: block">Épica</strong>
-                            <span style="display: block; font-size: 0.65rem; color: #64748b">Bandas sonoras</span>
+                            <strong style="display: block">Dolor</strong>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Tristeza profunda</span>
+                        </span>
+                    </button>
+                    <button class="btn-emocion" data-tipo="paz">
+                        <span class="emoji">🕊️</span>
+                        <span class="info-btn">
+                            <strong style="display: block">Paz</strong>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Ambiente y calma</span>
+                        </span>
+                    </button>
+                    <button class="btn-emocion" data-tipo="amor">
+                        <span class="emoji">❤️</span>
+                        <span class="info-btn">
+                            <strong style="display: block">Amor</strong>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Cálido e íntimo</span>
+                        </span>
+                    </button>
+                    <button class="btn-emocion" data-tipo="poder">
+                        <span class="emoji">⚔️</span>
+                        <span class="info-btn">
+                            <strong style="display: block">Poder</strong>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Épico y heroico</span>
                         </span>
                     </button>
                     <button class="btn-emocion" data-tipo="misterio">
-                        <span class="emoji">🌌</span>
+                        <span class="emoji">👁️</span>
                         <span class="info-btn">
                             <strong style="display: block">Misterio</strong>
-                            <span style="display: block; font-size: 0.65rem; color: #64748b">Tono oscuro</span>
+                            <span style="display: block; font-size: 0.65rem; color: #64748b">Suspenso y tensión</span>
                         </span>
                     </button>
                 </div>
             </aside>
 
             <div id="contenedor">
-                <object id="circulo" data="circulo.svg" type="image/svg+xml"></object>
+                <img id="circulo" src="circulo.svg" alt="Círculo de Quintas Fondo" />
 
                 <div id="eje-mayor" class="eje-abanico">
                     <img src="AbaMayor.svg" alt="Abanico Mayor" id="AbaMayor" />
@@ -106,8 +126,8 @@
                 </div>
             </aside>
         </div>
-        <script src="script.js?v=3"></script>
-        <!-- JS de Bootstrap 5 -->
+
+        <script src="script.js?v=4"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
