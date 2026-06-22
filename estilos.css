@@ -1,26 +1,42 @@
 /* ================================================================= */
-
 /* 1. DISEÑO GENERAL Y RESPONSIVO */
-
 /* ================================================================= */
 
 /* Maquillaje de Fondo y Paneles */
 body {
+    margin: 0;
+    padding: 0;
     background-color: #10141d; /* Color oscuro profundo de tu captura */
+    color: #e2e8f0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Evita scrolls accidentales por la rotación */
 }
 
 .pantalla-completa {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    height: 100vh;
+    padding: 0 40px;
+    box-sizing: border-box;
+    position: relative;
 }
 
 header {
+    position: absolute;
+    top: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    margin-bottom: 15px;
+    width: 100%;
+    z-index: 10;
 }
 header h1 {
     font-family: serif;
@@ -37,167 +53,269 @@ header p {
 
 #contenedor {
     position: relative;
-
-    width: 90vw;
-
-    max-width: 600px;
-
-    aspect-ratio: 1 / 1;
+    width: 500px;  /* Forzado a tamaño fijo idéntico a tu plano original */
+    height: 500px; /* Así tus coordenadas matemáticas nunca se desplazan */
+    margin: 0 auto;
+    flex-shrink: 0;
+    z-index: 5;
 }
 
 #circulo {
     position: absolute;
-
     top: 0;
-
     left: 0;
-
     width: 100%;
-
     height: 100%;
-
     pointer-events: none;
-
     z-index: 1;
 }
 
 /* ================================================================= */
-
 /* 2. ESTRUCTURA DE LOS ABANICOS (EJES) */
-
 /* ================================================================= */
 
 #eje-mayor,
 #eje-menor {
     position: absolute;
-
     /* Mantenemos tus ajustes de centro exactos */
-
-    top: calc(50% - 0.5%);
-
-    left: calc(50% + 2.3%);
-
-    width: 170%;
-
-    height: 106%;
-
+    top: calc(49.6%);
+    left: calc(50%);
+    width: 112%;
+    height: 112%;
     /* El transform inicial es aplicado por el JS, 
-
        aquí definimos el pivote de giro sobre el centro del contenedor */
-
-    transform-origin: 50% 50%;
-
+    transform-origin: 52% 49.7%;
     pointer-events: none;
-
     z-index: 5;
-
-    transition: transform 0.4s ease-out;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Forzamos que las imágenes no tengan márgenes internos */
-
 #eje-mayor img,
 #eje-menor img {
     position: absolute;
-
-    top: 50.3%;
-
-    left: 48.7%;
-
-    /* AJUSTA ESTO: Cambia el 100% a un tamaño menor, ej: 85% o 90% */
-
-    width: 90%;
-
+    top: 50%;
+    left: 50%;
+    width: 90%; /* Ajustado al 90% para encajar perfectamente con tu SVG */
     height: 90%;
-
     /* Esto es vital para que al reducir el tamaño, 
-
        se mantenga centrada en su propio espacio */
-
     transform: translate(-50%, -50%);
-
     display: block;
-
     object-fit: contain;
 }
 
 /* ================================================================= */
+/* 3. NUEVO: NUEVAS COLUMNAS LATERALES ESTABLES */
+/* ================================================================= */
+.columna-lateral {
+    width: 250px;
+    background: rgba(22, 29, 47, 0.6);
+    border: 1px solid #232d45;
+    padding: 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    z-index: 15;
+    flex-shrink: 0;
+}
 
-/* 3. CONFIGURACIÓN DE LAS NOTAS */
+.columna-lateral h2 {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin: 0 0 12px 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(35, 45, 69, 0.5);
+    padding-bottom: 6px;
+}
 
+/* Botones de Emociones (Izquierda) */
+.panel-emociones {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.btn-emocion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #161d2f;
+    color: #cbd5e1;
+    border: 1px solid #232d45;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-emocion:hover {
+    border-color: #d4af37;
+    transform: translateX(3px);
+}
+.btn-emocion.activo {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: #d4af37;
+}
+.btn-emocion .info-btn {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    text-align: left;
+}
+.btn-emocion .info-btn strong {
+    color: #fff;
+    font-size: 0.8rem;
+}
+.btn-emocion .info-btn span {
+    color: #64748b;
+    font-size: 0.65rem;
+}
+
+/* Displays de Estado (Derecha) */
+.displays-verticales {
+    display: flex;
+    gap: 8px;
+}
+.info-activa {
+    flex: 1;
+    background: #111625;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #1e263b;
+    text-align: center;
+}
+.info-activa p {
+    font-size: 0.55rem;
+    color: #64748b;
+    margin: 0;
+}
+.info-activa div {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-top: 2px;
+    font-weight: bold;
+}
+
+.recetario-acordes {
+    background: #161d2f;
+    border: 1px solid #232d45;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.recetario-acordes p {
+    font-size: 0.6rem;
+    color: #d4af37;
+    margin: 0 0 4px 0;
+    font-weight: bold;
+}
+#display-progresion {
+    font-size: 0.75rem;
+    color: #cbd5e1;
+    line-height: 1.3;
+}
+.prog-resaltada {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+    border-left: 3px solid #d4af37;
+}
+
+/* ================================================================= */
+/* 4. CONFIGURACIÓN DE LAS NOTAS */
 /* ================================================================= */
 
 .nota-mayor,
 .nota-menor {
     position: absolute;
-
     background-color: transparent;
-
     border-radius: 50%;
-
     box-sizing: border-box;
-
     cursor: pointer;
-
     transform: translate(-50%, -50%);
-
     z-index: 10;
-
     pointer-events: auto !important;
-
     --ajuste-x: 2.3%;
-
     --ajuste-y: -0.5%;
-
     opacity: 0;
-
     transition:
         opacity 0.25s ease,
-        background-color 0.25s ease;
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .nota-mayor:hover,
 .nota-menor:hover {
     opacity: 0.8;
-
     background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 /* Medidas para Notas Mayores */
-
 .nota-mayor {
     width: 8%;
-
     height: 8%;
-
     border: 2.5px solid #ffffff;
-
     --radio-x: 34.2%;
-
     --radio-y: 33.5%;
 }
 
 /* Medidas para Notas Menores */
-
 .nota-menor {
     width: 5.5%;
-
     height: 5.5%;
-
     border: 2px solid #ffffff;
-
     --radio-x: 19%;
-
     --radio-y: 19.5%;
 }
 
 /* Posicionamiento matemático de las notas */
-
 .nota-mayor,
 .nota-menor {
     --angulo: calc(var(--i) * 30deg - 90deg);
-
     left: calc(50% + var(--ajuste-x) + var(--radio-x) * cos(var(--angulo)));
-
     top: calc(50% + var(--ajuste-y) + var(--radio-y) * sin(var(--angulo)));
+}
+
+/* ================================================================= */
+/* 5. NUEVO: ANIMACIONES DE PARPADEO E ILUMINACIÓN */
+/* ================================================================= */
+@keyframes pulsoBrillo {
+    0% { box-shadow: 0 0 4px #d4af37; border-color: #d4af37; opacity: 0.3; }
+    50% { box-shadow: 0 0 15px #ffffff, 0 0 25px #d4af37; border-color: #ffffff; opacity: 0.9; }
+    100% { box-shadow: 0 0 4px #d4af37; border-color: #d4af37; opacity: 0.3; }
+}
+
+.nota-iluminada {
+    animation: pulsoBrillo 1.4s infinite ease-in-out !important;
+    opacity: 0.9 !important;
+    background-color: rgba(212, 175, 55, 0.15) !important;
+}
+
+/* Adaptación para pantallas medianas o pequeñas (Mantiene los clics perfectos) */
+@media (max-width: 1050px) {
+    .pantalla-completa {
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 20px 20px 20px;
+        overflow-y: auto;
+        height: auto;
+    }
+    header { position: relative; top: 0; transform: none; left: 0; margin-bottom: 20px; }
+    .columna-lateral { width: 100%; max-width: 500px; margin-bottom: 15px; }
+    #contenedor {
+        transform: scale(0.85);
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 520px) {
+    #contenedor {
+        transform: scale(0.65);
+        margin: -40px auto;
+    }
 }
